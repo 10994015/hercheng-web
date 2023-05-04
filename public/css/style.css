@@ -1,0 +1,311 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header#header {
+  width: 100%;
+  background-color: #1C84EE;
+  padding: 10px 50px 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+header#header > .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header#header > .left > .logo {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 900;
+  padding: 12px;
+  transition: 0.3s;
+}
+header#header > .left > .logo > img {
+  color: #ff9898;
+  margin-right: 5px;
+  min-width: 30px;
+  width: 30px;
+}
+header#header > .left > .logo > span {
+  letter-spacing: 1.6px;
+  font-size: 21px;
+  transition: 0.3s;
+}
+header#header > .left > .logo > span:hover {
+  color: #bbb;
+}
+header#header > .left > svg {
+  color: #fff;
+  cursor: pointer;
+  margin-left: 100px;
+  transition: all 0.3s ease;
+}
+header#header > .left > svg.close {
+  margin-left: 20px;
+}
+header#header > .right {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+header#header > .right > .admin {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+header#header > .right > .admin > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+header#header > .right > .admin > span {
+  font-size: 14px;
+  margin-left: 10px;
+}
+header#header > .right > ul.list {
+  position: absolute;
+  top: 55px;
+  left: -10px;
+  background-color: #fff;
+  color: #111;
+  width: 144px;
+  padding: 0.25rem;
+  border-radius: 3px;
+  box-shadow: 0 0 5px #ccc;
+  animation: fade-in 0.1s linear;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+header#header > .right > ul.list a, header#header > .right > ul.list form {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  background-color: #fff;
+}
+header#header > .right > ul.list a:hover, header#header > .right > ul.list form:hover {
+  background-color: #f1f1f1;
+}
+
+#app > .main {
+  width: 100%;
+  height: auto;
+  min-height: calc(100vh - 80px);
+  display: flex;
+}
+#app > .main > main {
+  height: auto;
+  width: 100%;
+}
+#app > .main > main > .router-view {
+  padding: 20px 25px;
+  height: auto;
+  min-height: calc(100vh - 151px);
+  background-color: #F4F5F8;
+}
+#app > .main > main > footer {
+  background-color: #fff;
+  color: #74788d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  padding: 25px 40px;
+  box-shadow: -1px -1px 1px #f9f9f9;
+  width: 100%;
+}
+#app > .main > .sideBar {
+  min-width: 250px;
+  width: 250px;
+  min-height: calc(100vh - 80px);
+  height: auto;
+  background-color: #fff;
+  padding: 20px 10px;
+  transition: 0.3s;
+  color: #111;
+  box-shadow: 0 8px 5px #ccc;
+}
+#app > .main > .sideBar.close {
+  width: 90px;
+  min-width: 90px;
+}
+#app > .main > .sideBar > ul {
+  margin-top: 10px;
+}
+#app > .main > .sideBar > ul a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 6px;
+  padding: 12px 25px;
+  border-radius: 25px;
+  transition: 0.3s;
+  font-size: 15px;
+}
+#app > .main > .sideBar > ul a:hover {
+  color: #1484c4;
+}
+#app > .main > .sideBar > ul a.active {
+  color: #fff;
+}
+#app > .main > .sideBar > ul a svg {
+  margin-right: 10px;
+  min-width: 20px;
+  width: 20px;
+}
+#app > .main > .sideBar > ul a svg.active {
+  transform: rotate(180deg);
+}
+#app > .main > .sideBar > ul ol {
+  margin-left: 10px;
+  height: 0;
+  overflow: hidden;
+}
+#app > .main > .sideBar > ul ol.open {
+  height: auto;
+}
+#app > .main > .sideBar > ul ol > a {
+  border-radius: 0;
+  padding: 10px 15px;
+}
+
+.login {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-image: url("/images/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login .darken {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1;
+}
+.login .main {
+  position: relative;
+  z-index: 10;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login .main > .errorMsg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login .main > .errorMsg p {
+  color: rgb(224, 0, 0);
+  font-size: 14px;
+}
+.login .main > h1 {
+  font-weight: 900;
+  font-size: 30px;
+  letter-spacing: 2px;
+  color: #fff;
+  text-align: center;
+}
+.login .main form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+.login .main form > .form-group {
+  display: flex;
+  margin-bottom: 10px;
+}
+.login .main form > .form-group .icon {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  width: 36px;
+  height: 45px;
+  border: none;
+  padding: 15px 0 15px 19px;
+  border-radius: 30px 0 0 30px;
+  margin-right: 0;
+}
+.login .main form > .form-group input[type=email],
+.login .main form > .form-group input[type=password] {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  width: 274px;
+  height: 45px;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0;
+  padding: 15px 18px 15px 16px;
+  font-size: 14px;
+  outline: none;
+  border: none;
+}
+.login .main form > .form-group input[type=email]:focus,
+.login .main form > .form-group input[type=password]:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+.login .main form > .form-group.remember {
+  margin-right: auto;
+  color: #ccc;
+}
+.login .main form > .form-group.remember input[type=checkbox] {
+  margin-left: auto;
+}
+.login .main form > .commit-text {
+  color: #ccc;
+  font-size: 14px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-left: auto;
+  transition: 0.3s;
+  padding: 0 10px;
+}
+.login .main form > .commit-text:hover {
+  color: #fff;
+}
+.login .main form > button {
+  margin-top: 20px;
+  background-color: rgba(28, 132, 238, 0.85);
+  width: 300px;
+  height: 45px;
+  border-radius: 30px;
+  font-size: 14px;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login .main form > button:hover {
+  background-color: rgb(28, 132, 238);
+}
+.login .main form > button.loading {
+  cursor: not-allowed;
+}
+.login .main form > button.loading:hover {
+  background-color: rgba(28, 132, 238, 0.85);
+}
