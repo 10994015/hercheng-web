@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Cms;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Article extends Component
@@ -10,4 +11,5 @@ class Article extends Component
     {
         return view('livewire.cms.article')->layout('layouts.cms');
     }
+    
 }
