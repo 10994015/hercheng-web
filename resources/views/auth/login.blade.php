@@ -55,15 +55,14 @@
                 記住我
               </label>
             </div>
-            <button type="submit" :class="{ loading: loading }" :disabled="false">
+            <button type="submit"  :disabled="loading">
               <template x-if="loading">
                 <svg
-                
-                class="animate-spin h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
+                  class="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
                 <circle
                   class="opacity-25"
                   cx="12"
@@ -79,9 +78,9 @@
                 ></path>
               </svg>
               </template>
-                <template x-if="!loading">
-                <span>Login</span>
-                </template>
+              <template x-if="!loading">
+              <span>Login</span>
+              </template>
             </button>
           </form>
           <x-jet-validation-errors class="mb-4" />

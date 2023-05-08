@@ -20,7 +20,7 @@
         init(){
             setTimeout(()=>{
                 this.loading = false
-            }, 500)
+            }, 200)
     
         },
         isCloseSidebar:false,
