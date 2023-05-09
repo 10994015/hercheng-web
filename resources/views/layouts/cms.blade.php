@@ -15,14 +15,7 @@
 <body>
     
     
-    <div id="app" wire:loading.remove  x-data="{
-        loading:true,
-        init(){
-            setTimeout(()=>{
-                this.loading = false
-            }, 200)
-    
-        },
+    <div id="app" wire:loading.remove x-data="{
         isCloseSidebar:false,
         sideBar:{
             isArticle:false,
@@ -35,24 +28,25 @@
             this.sideBar[ev.name] = true
         }
     }" x-on:is-open-sidebar.window="isSideBarOpenFn($event.detail)">
-        <template x-if="loading">
-            @include('../livewire/cms/components/loading')
-        </template>
-        <template x-if="!loading">
-            @include('../livewire/cms/components/header')
-        </template>
-        <template x-if="!loading">
-            <div class="main">
-                @include('../livewire/cms/components/sidebar')
-                <main>
-                    <div class="router-view">
-                        {{$slot}}
-                    </div>
-                    @include('../livewire/cms/components/footer')
-                </main>
-            </div>
-        </template>
+        @include('../livewire/cms/components/loading')
+        @include('../livewire/cms/components/header')
+        <div class="main">
+            @include('../livewire/cms/components/sidebar')
+            <main>
+                <div class="router-view">
+                    {{$slot}}
+                </div>
+                @include('../livewire/cms/components/footer')
+            </main>
+        </div> 
+        
     </div>
     
+
+    <script>
+        window.onload = ()=>{
+            document.getElementById('loading').style.display = "none"
+        }
+    </script>
 </body>
 </html>

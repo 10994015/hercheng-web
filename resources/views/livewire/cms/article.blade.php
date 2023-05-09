@@ -26,7 +26,6 @@
           <input
             type="text"
             placeholder="搜尋..."
-            x-model="search"
           />
         </div>
         <div class="form-group">
@@ -40,7 +39,7 @@
       </div>
       <div class="right">
         <div class="form-group">
-          <a href="{{route('cms.article')}}"
+          <a href="{{route('cms.add-article', ['id'=>'create'])}}"
             class="btn"
             >+ 新增文章</a
           >

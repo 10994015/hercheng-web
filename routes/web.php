@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Livewire\Cms\AddArticle;
 use App\Http\Livewire\Cms\Article;
+use App\Http\Livewire\Cms\Category\AddArticleCategory;
 use App\Http\Livewire\Cms\Dashboard;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +35,7 @@ Route::middleware([
     'verified'
 ])->prefix('web.cms')->group(function () {
     Route::get('/', Dashboard::class)->name('cms.dashboard');
-    Route::get('/article', Article::class)->name('cms.article');
+    Route::get('/articles', Article::class)->name('cms.article');
+    Route::get('/add-article/{id}', AddArticle::class)->name('cms.add-article');
+    Route::get('/add-article-category', AddArticleCategory::class)->name('cms.add-article-category');
 });

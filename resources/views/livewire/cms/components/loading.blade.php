@@ -1,4 +1,4 @@
-<div class="loading">
+<div class="loading" id="loading">
     <svg width="0" height="0">
         <filter id="gooey-black-hole">
             <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur"/>

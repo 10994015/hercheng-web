@@ -623,3 +623,281 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
   color: #777;
   background-color: #242a30;
 }
+
+.addArticle {
+  display: flex;
+  flex-direction: column;
+}
+.addArticle > h1 {
+  font-weight: 900;
+  color: #333;
+}
+.addArticle > .card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 4rem 1.5rem 2.5rem;
+  margin-top: 25px;
+}
+.addArticle > .card > .card-title {
+  border-bottom: 1px #aaa solid;
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.addArticle > .card > .card-title h2 {
+  color: #333;
+  font-size: 17px;
+  font-weight: 800;
+}
+.addArticle > .card > .card-title p {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+.addArticle > .card > .card-title > .categoryBtn {
+  margin-left: auto;
+}
+.addArticle > .card > .card-title > .categoryBtn button {
+  background-color: #1c84ee;
+  color: #fff;
+  border-radius: 25px;
+  padding: 10px 23px;
+  transition: 0.3s;
+  font-size: 13px;
+  margin-left: 16px;
+}
+.addArticle > .card > .card-title > .categoryBtn button:hover {
+  background-color: #1870ca;
+  border-color: #1870ca;
+}
+.addArticle > .card > .card-title > .categoryBtn button > i {
+  margin-right: 3px;
+}
+.addArticle > .card > form, .addArticle > .card .form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 100%);
+  grid-column-gap: 30px;
+}
+.addArticle > .card > form .chkbox-group, .addArticle > .card .form .chkbox-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.addArticle > .card > form span.successMsg, .addArticle > .card .form span.successMsg {
+  margin-top: 15px;
+  background-color: rgb(0, 190, 48);
+  color: #fff;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: 13px;
+  max-width: 120px;
+  text-align: center;
+}
+.addArticle > .card > form .form-group, .addArticle > .card .form .form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+}
+.addArticle > .card > form .form-group.btn-group, .addArticle > .card .form .form-group.btn-group {
+  flex-direction: row;
+}
+.addArticle > .card > form .form-group > .container, .addArticle > .card .form .form-group > .container {
+  display: flex;
+  align-items: center;
+}
+.addArticle > .card > form .form-group > .container > select, .addArticle > .card .form .form-group > .container > select {
+  width: calc(100% - 46px);
+  margin-right: 10px;
+}
+.addArticle > .card > form .form-group > .container > a, .addArticle > .card .form .form-group > .container > a {
+  display: flex;
+  background-color: #34C38F;
+  color: #fff;
+  min-width: 36px;
+  height: 36px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.addArticle > .card > form .form-group > label, .addArticle > .card .form .form-group > label {
+  margin-bottom: 10px;
+  font-weight: 900;
+  font-size: 13px;
+  color: #333;
+}
+.addArticle > .card > form .form-group > .imagefileFor, .addArticle > .card .form .form-group > .imagefileFor {
+  width: 100%;
+  height: 140px;
+  background-color: #fff;
+  border: 2px #aaa dashed;
+  cursor: pointer;
+}
+.addArticle > .card > form .form-group > .imagefileFor > div, .addArticle > .card .form .form-group > .imagefileFor > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 15px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.addArticle > .card > form .form-group > .imagefileFor > div.isPreview > svg, .addArticle > .card .form .form-group > .imagefileFor > div.isPreview > svg {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  color: #111;
+  cursor: pointer;
+}
+.addArticle > .card > form .form-group > .imagefileFor > div > img, .addArticle > .card .form .form-group > .imagefileFor > div > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.addArticle > .card > form .form-group input[type=text],
+.addArticle > .card > form .form-group input[type=number],
+.addArticle > .card > form .form-group select, .addArticle > .card .form .form-group input[type=text],
+.addArticle > .card .form .form-group input[type=number],
+.addArticle > .card .form .form-group select {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 0 12px;
+  background-color: #fff;
+  color: #111;
+  border: 1px #aaa solid;
+  height: 36px;
+  font-size: 14px;
+}
+.addArticle > .card > form .form-group > .input-group, .addArticle > .card .form .form-group > .input-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.addArticle > .card > form .form-group > .input-group .icon, .addArticle > .card .form .form-group > .input-group .icon {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  width: 36px;
+  height: 36px;
+  border: none;
+  padding: 7.5px 0 7.5px 9px;
+  border-radius: 5px 0 0 5px;
+  margin-right: 0;
+}
+.addArticle > .card > form .form-group > .input-group input, .addArticle > .card .form .form-group > .input-group input {
+  margin-left: 0;
+  width: calc(100% - 36px);
+}
+.addArticle > .card > form .form-group > textarea, .addArticle > .card .form .form-group > textarea {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  background-color: #fff;
+  color: #111;
+  border: 1px #aaa solid;
+  height: 140px;
+  font-size: 14px;
+  resize: none;
+  resize: vertical;
+}
+.addArticle > .card > form .form-group > button,
+.addArticle > .card > form .form-group .pre, .addArticle > .card .form .form-group > button,
+.addArticle > .card .form .form-group .pre {
+  color: #f6f6f6;
+  background-color: #1c84ee;
+  border-color: #1c84ee;
+  border-radius: 5px;
+  height: 38px;
+  font-size: 13px;
+  font-weight: 500;
+  width: auto;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+.addArticle > .card > form .form-group > button:hover,
+.addArticle > .card > form .form-group .pre:hover, .addArticle > .card .form .form-group > button:hover,
+.addArticle > .card .form .form-group .pre:hover {
+  background-color: #1870ca;
+  border-color: #1870ca;
+}
+.addArticle > .card > form .form-group > button.loading,
+.addArticle > .card > form .form-group .pre.loading, .addArticle > .card .form .form-group > button.loading,
+.addArticle > .card .form .form-group .pre.loading {
+  cursor: not-allowed;
+  background-color: #1870ca;
+  border-color: #1870ca;
+}
+.addArticle > .card > form .form-group > button > svg,
+.addArticle > .card > form .form-group .pre > svg, .addArticle > .card .form .form-group > button > svg,
+.addArticle > .card .form .form-group .pre > svg {
+  text-align: center;
+}
+.addArticle > .card > form .form-group .pre, .addArticle > .card .form .form-group .pre {
+  background-color: #74788d;
+  color: #f6f6f6;
+  margin-left: 10px;
+}
+.addArticle > .card > form .form-group .pre:hover, .addArticle > .card .form .form-group .pre:hover {
+  background-color: #636678;
+  border-color: #5d6071;
+}
+.addArticle > .card > .errorMsg {
+  display: flex;
+  flex-direction: column;
+}
+.addArticle > .card > .errorMsg > span {
+  color: rgb(180, 0, 0);
+  margin-top: 4px;
+}
+.addArticle input[type=number]::-webkit-outer-spin-button,
+.addArticle input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.addArticle input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
+.addArticle input[type=checkbox],
+.addArticle input[type=radio] {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  outline: none;
+  background: linear-gradient(to right, #bbb, #999);
+  -webkit-appearance: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.addArticle input[type=checkbox]::before,
+.addArticle input[type=radio]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  background: #fff;
+  border-radius: 50%;
+  transform: scale(0.98, 0.96);
+  transition: 0.5s;
+}
+.addArticle input[type=checkbox]:checked,
+.addArticle input[type=radio]:checked {
+  background: linear-gradient(to right, #1c84ee, #185cc9);
+}
+.addArticle input[type=checkbox]:checked::before,
+.addArticle input[type=radio]:checked::before {
+  left: 25px;
+}
+.addArticle input[type=checkbox]::after,
+.addArticle input[type=radio]::after {
+  content: "";
+}
