@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>赫成教育後臺管理系統</title>
     <link rel="stylesheet" href="/css/app.css">
-    <script src="/js/app.js"></script>
+    <script src="/js/app.js" defer></script>
     <link rel="stylesheet" href="/css/style.css">
     @livewireStyles
     @livewireScripts
@@ -48,5 +48,7 @@
             document.getElementById('loading').style.display = "none"
         }
     </script>
+
+    @stack('scripts')
 </body>
 </html>

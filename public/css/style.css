@@ -483,10 +483,14 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left: 0;
-  outline: none;
   padding: 15px 18px 15px 16px;
   font-size: 14px;
   color: #333;
+  outline: none;
+}
+.article > .card > .card-header .left .form-group input[type=text]:focus,
+.article > .card > .card-header .right .form-group input[type=text]:focus {
+  box-shadow: none;
 }
 .article > .card > .card-header .left .form-group .btn,
 .article > .card > .card-header .right .form-group .btn {
@@ -517,12 +521,16 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
   outline: none;
   margin-left: 15px;
 }
+.article > .card > .card-header .left .form-group select:focus,
+.article > .card > .card-header .right .form-group select:focus {
+  box-shadow: none;
+}
 .article > .card > .table-responsive {
   margin-top: 20px;
 }
 .article > .card > .table-responsive > table {
   margin: 0 auto;
-  width: 100%;
+  min-width: 100%;
   font-size: 14px;
 }
 .article > .card > .table-responsive > table > thead {
@@ -563,10 +571,13 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
   -o-object-fit: cover;
      object-fit: cover;
 }
-.article > .card > .table-responsive > table > tbody > tr > td button.edit {
+.article > .card > .table-responsive > table > tbody > tr > td button, .article > .card > .table-responsive > table > tbody > tr > td a {
+  display: inline-block;
+}
+.article > .card > .table-responsive > table > tbody > tr > td button.edit, .article > .card > .table-responsive > table > tbody > tr > td a.edit {
   color: #2ca67a;
 }
-.article > .card > .table-responsive > table > tbody > tr > td button.delete {
+.article > .card > .table-responsive > table > tbody > tr > td button.delete, .article > .card > .table-responsive > table > tbody > tr > td a.delete {
   color: rgb(200, 6, 6);
 }
 .article > .card > .table-responsive > table > tbody > tr > td span {
@@ -710,6 +721,9 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
   width: calc(100% - 46px);
   margin-right: 10px;
 }
+.addArticle > .card > form .form-group > .container > select:focus, .addArticle > .card .form .form-group > .container > select:focus {
+  box-shadow: none;
+}
 .addArticle > .card > form .form-group > .container > a, .addArticle > .card .form .form-group > .container > a {
   display: flex;
   background-color: #34C38F;
@@ -777,6 +791,13 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
   height: 36px;
   font-size: 14px;
 }
+.addArticle > .card > form .form-group input[type=text]:focus,
+.addArticle > .card > form .form-group input[type=number]:focus,
+.addArticle > .card > form .form-group select:focus, .addArticle > .card .form .form-group input[type=text]:focus,
+.addArticle > .card .form .form-group input[type=number]:focus,
+.addArticle > .card .form .form-group select:focus {
+  box-shadow: none;
+}
 .addArticle > .card > form .form-group > .input-group, .addArticle > .card .form .form-group > .input-group {
   display: flex;
   align-items: center;
@@ -795,6 +816,9 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
   margin-left: 0;
   width: calc(100% - 36px);
 }
+.addArticle > .card > form .form-group > .input-group input:focus, .addArticle > .card .form .form-group > .input-group input:focus {
+  box-shadow: none;
+}
 .addArticle > .card > form .form-group > textarea, .addArticle > .card .form .form-group > textarea {
   border: none;
   outline: none;
@@ -807,6 +831,9 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
   font-size: 14px;
   resize: none;
   resize: vertical;
+}
+.addArticle > .card > form .form-group > textarea:focus, .addArticle > .card .form .form-group > textarea:focus {
+  box-shadow: none;
 }
 .addArticle > .card > form .form-group > button,
 .addArticle > .card > form .form-group .pre, .addArticle > .card .form .form-group > button,
@@ -868,6 +895,9 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
 .addArticle input[type=number] {
   -moz-appearance: textfield; /* Firefox */
 }
+.addArticle input[type=number]:focus {
+  box-shadow: none;
+}
 .addArticle input[type=checkbox],
 .addArticle input[type=radio] {
   position: relative;
@@ -878,6 +908,10 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
   -webkit-appearance: none;
   cursor: pointer;
   border-radius: 20px;
+}
+.addArticle input[type=checkbox]:focus,
+.addArticle input[type=radio]:focus {
+  box-shadow: none;
 }
 .addArticle input[type=checkbox]::before,
 .addArticle input[type=radio]::before {

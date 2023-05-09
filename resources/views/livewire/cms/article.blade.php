@@ -1,9 +1,20 @@
-<div class="article" wire:loading.remove x-data="{
+<div class="article"  wire:ignore.self x-data="{
+    deleteItem(id){
+      if(confirm('確認要刪除此文章嗎？')){
+        window.Livewire.emit('destroy', id);
+      }
+    },
+    deleteItems(){
+      if(confirm('確認要刪除嗎？')){
+        window.Livewire.emit('deleteItems');
+      }
+    },
     init(){
         this.$dispatch('is-open-sidebar', {'name':'isArticle'})
-    }
+    },
+    
 }">
-<div class="card">
+  <div class="card">
     <div class="card-header">
       <div class="left">
         <div class="form-group">
@@ -26,10 +37,11 @@
           <input
             type="text"
             placeholder="搜尋..."
+            wire:model="search"
           />
         </div>
         <div class="form-group">
-          <select v-model="perPage">
+          <select wire:model="per_page">
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="50">50</option>
@@ -46,22 +58,26 @@
         </div>
       </div>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive ">
       <table class="table table-auto w-full animate-fade-in-down">
         <thead>
           <tr>
             <th class="w-[20px]">
               <input
                 type="checkbox"
-                v-model="isSelectAllChecked"
+                wire:model="chkAllBox"
+                wire:change="chkAll"
               />
             </th>
             <th
-              class="w-[40px] cursor-pointer"
+              class="w-[40px] cursor-pointer @if($sort_field==='id') active @endif"
+              wire:click="sortSwitch('id')"
             >
               <div class="flex items-center">
                 <div>Id</div>
-                <div class="ml-2" v-if="sortField === 'id'">
+                @if($sort_field==='id')
+                <div class="ml-2">
+                  @if($sort_direction === 'desc')
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -76,6 +92,8 @@
                       d="M4.5 15.75l7.5-7.5 7.5 7.5"
                     />
                   </svg>
+                  @endif
+                  @if($sort_direction === 'asc')
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -90,17 +108,21 @@
                       d="M19.5 8.25l-7.5 7.5-7.5-7.5"
                     />
                   </svg>
+                  @endif
                 </div>
+                @endif
               </div>
             </th>
             <th
-              class="cursor-pointer"
+              class="cursor-pointer  @if($sort_field==='image') active @endif"
+              wire:click="sortSwitch('image')"
             >
-              <div class="flex items-center">
+              <div class="flex items-center" >
                 <div>圖片</div>
-                <div class="ml-2" v-if="sortField === 'image'">
+                @if($sort_field==='image')
+                <div class="ml-2">
+                  @if($sort_direction === 'desc')
                   <svg
-                    v-if="sortDirection === 'desc'"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -114,6 +136,8 @@
                       d="M4.5 15.75l7.5-7.5 7.5 7.5"
                     />
                   </svg>
+                  @endif
+                  @if($sort_direction === 'asc')
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -128,15 +152,20 @@
                       d="M19.5 8.25l-7.5 7.5-7.5-7.5"
                     />
                   </svg>
+                  @endif
                 </div>
+                @endif
               </div>
             </th>
             <th
-              :class="cursor-pointer"
+              class="cursor-pointer @if($sort_field==='title') active @endif"
+              wire:click="sortSwitch('title')"
             >
               <div class="flex items-center">
                 <div>標題</div>
-                <div class="ml-2" >
+                @if($sort_field==='title')
+                <div class="ml-2">
+                  @if($sort_direction==='desc')
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -151,6 +180,8 @@
                       d="M4.5 15.75l7.5-7.5 7.5 7.5"
                     />
                   </svg>
+                  @endif
+                  @if($sort_direction==='asc')
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -165,15 +196,20 @@
                       d="M19.5 8.25l-7.5 7.5-7.5-7.5"
                     />
                   </svg>
+                  @endif
                 </div>
+                @endif
               </div>
             </th>
             <th
-              class="cursor-pointer'"
+              class="cursor-pointer @if($sort_field==='category_id') active @endif"
+              wire:click="sortSwitch('category_id')"
             >
               <div class="flex items-center">
                 <div>分類</div>
-                <div class="ml-2" v-if="sortField === 'category_id'">
+                @if($sort_field==='category_id')
+                <div class="ml-2">
+                  @if($sort_direction==='desc')
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -188,6 +224,8 @@
                       d="M4.5 15.75l7.5-7.5 7.5 7.5"
                     />
                   </svg>
+                  @endif
+                  @if($sort_direction==='asc')
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -202,15 +240,20 @@
                       d="M19.5 8.25l-7.5 7.5-7.5-7.5"
                     />
                   </svg>
+                  @endif
                 </div>
+                @endif
               </div>
             </th>
             <th
-              class="cursor-pointer'"
+              class="cursor-pointer @if($sort_field==='updated_at') active @endif"
+              wire:click="sortSwitch('updated_at')"
             >
-              <div class="flex items-center">
+              <div class="flex items-center ">
                 <div>最後更新時間</div>
+                @if($sort_field==='updated_at')
                 <div class="ml-2">
+                  @if($sort_direction === 'desc')
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -225,6 +268,8 @@
                       d="M4.5 15.75l7.5-7.5 7.5 7.5"
                     />
                   </svg>
+                  @endif
+                  @if($sort_direction === 'asc')
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -239,66 +284,52 @@
                       d="M19.5 8.25l-7.5 7.5-7.5-7.5"
                     />
                   </svg>
+                  @endif
                 </div>
+                @endif
               </div>
             </th>
             <th>是否顯示</th>
             <th>操作</th>
           </tr>
         </thead>
-        @if(false)
-        <tbody  class="loadingTable">
-          <tr>
-            <td colspan="7" class="w-full" style="text-align: center">
-              <svg
-                class="animate-spin h-5 w-5 text-gray-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  class="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  stroke-width="4"
-                ></circle>
-                <path
-                  class="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-            </td>
-          </tr>
-        </tbody>
-        @endif
-        <tbody >
+        <tbody wire:loading.remove wire:target='sortSwitch'>
+          @foreach($articles as $article)
           <tr
             class="animate-fade-in-down"
           >
             <td class="w-[20px]">
               <input
                 type="checkbox"
-                ref="checkItem"
+                wire:model="checkItem.{{$article->id}}"
+                {{-- wire:change='changeCheck({{$article->id}})' --}}
+                wire:change='changeCheck()'
               />
             </td>
-            <td class="w-[40px]">article.id</td>
+            <td class="w-[40px]">{{$article->id}}</td>
             <td>
-              {{-- <img v-if="article.image_url" :src="article.image_url" /> --}}
-              <img v-else src="@/assets/news.jpg" />
+              @if($article->image)
+              <img src="{{$article->image}}" />
+              @else
+              <img src="/images/bg.jpg" />
+              @endif
             </td>
-            <td>article.title</td>
-            {{-- <td v-if="categories[article.category_id]!=null">categories[article.category_id]</td> --}}
-            <td v-else class="text-gray-400">尚無分類</td>
-            <td>article.updated_at</td>
+            <td>{{$article->title}}</td>
+            @if($article->category_id)
+            <td>{{$article->category->name}}</td>
+            @else
+            <td class="text-gray-400">尚無分類</td>
+            @endif
+            <td>{{$article->updated_at}}</td>
             <td>
-              <span v-if="article.hidden">隱藏</span
-              {{-- ><span v-else class="active">顯示</span> --}}
+              @if($article->hidden)
+              <span>隱藏</span>
+              @else
+              <span class="active">顯示</span>
+              @endif
             </td>
             <td>
-              <button
+              <a href="{{route('cms.add-article', ['id'=>$article->id])}}"
                 class="edit ml-1"
               >
                 <svg
@@ -315,8 +346,8 @@
                     d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
                   />
                 </svg>
-              </button>
-              <button class="delete ml-5" >
+              </a>
+              <button class="delete ml-5" x-on:click="deleteItem({{$article->id}})">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -334,7 +365,7 @@
               </button>
             </td>
           </tr>
-
+          @endforeach
           <tr >
             <td colspan="7">
               <div class="flex items-center">
@@ -353,16 +384,16 @@
                   />
                 </svg>
                 <button
-                  :class="[
-                   'bg-red-600' ,
-                    'py-1',
-                    'px-3',
-                    'ml-4',
-                    'text-white',
-                    'rounded-sm',
-                    'bg-gray-400',
-                  ]"
-                  :disabled="false"
+                  class="
+                    py-1
+                    px-3
+                    ml-4
+                  text-white
+                    rounded-sm
+                  @if(count(array_filter($checkItem, fn($item)=>$item==true))<=0) bg-gray-400 @else bg-red-600 cursor-pointer @endif
+                  "
+                  @if(count(array_filter($checkItem, fn($item)=>$item===true)) <= 0) disabled @endif
+                  x-on:click="deleteItems()"
                 >
                   一鍵刪除
                 </button>
@@ -372,23 +403,38 @@
         </tbody>
       </table>
     </div>
-    {{-- <div class="paging" v-if="articles.total > articles.limit">
-      <div class="pageInfo">Showing from articles.from to articles.to</div>
-      <div class="pageBtn">
-        <nav>
-          <a
-            href="#"
-            v-for="(link, i) of articles.links"
-            :key="i"
-            @click.prevent="getForPage($event, link)"
-            :disabled="!link.url"
-            :class="[{ active: link.active }, { disabled: !link.url }]"
-            v-html="link.label"
-          ></a>
-        </nav>
-      </div>
-    </div> --}}
+    <div class="w-full flex justify-center items-center mt-10 mb-10" wire:loading.flex wire:target='sortSwitch'>
+      <svg
+          class="animate-spin h-5 w-5 text-gray-500"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          ></circle>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+    </div>
+    <div class="mt-5">
+      {{ $articles->links() }}
+    </div>
   </div>
 </div>
 
-    
+@push('scripts')
+<script>
+window.addEventListener('deleteSuccess', e=>{
+  alert('刪除成功！')
+})
+</script>
+@endpush

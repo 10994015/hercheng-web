@@ -1167,6 +1167,9 @@ select {
 .mt-8 {
   margin-top: 2rem;
 }
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
 .block {
   display: block;
 }
@@ -1275,6 +1278,12 @@ select {
 .w-full {
   width: 100%;
 }
+.w-\[100\%\] {
+  width: 100%;
+}
+.w-\[50\%\] {
+  width: 50%;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1343,6 +1352,14 @@ select {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.cursor-auto {
+  cursor: auto;
+}
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .list-inside {
   list-style-position: inside;

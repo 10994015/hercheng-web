@@ -1,5 +1,9 @@
-<div class="addArticle" wire:ignore.self>
-    <h1>{{$baseTitle}}</h1>
+<div class="addArticle" wire:ignore.self x-data="{
+  init(){
+    this.$dispatch('is-open-sidebar', {'name':'isArticle'})
+  },
+}">
+    <h1>{{$base_title}}</h1>
     <div class="card">
       <div class="card-title">
         <h2>Basic Information</h2>
@@ -64,23 +68,29 @@
               ></path>
             </svg>
             @if(!$image)
-            <div wire:loading.remove wire:target="image">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-5 h-5 mb-2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-                />
-              </svg>
-              <span>將文件拖放到此處或單擊以上傳。</span>
-            </div>
+              @if(!$image_url)
+              <div wire:loading.remove wire:target="image">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-5 h-5 mb-2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                  />
+                </svg>
+                <span>將文件拖放到此處或單擊以上傳。</span>
+              </div>
+              @else
+              <div class="isPreview" wire:loading.remove wire:target="image">
+                <img src="{{$image_url}}" id="previewImg" />
+              </div>
+              @endif
             @else
             <div class="isPreview">
               <img src="{{$image->temporaryUrl()}}" id="previewImg" />
@@ -123,13 +133,12 @@
             </svg>
             <span wire:loading.remove wire:target='onSubmit'>保存更改</span>
           </button>
-          <button
+          <a href="{{route('cms.article')}}"
             class="pre"
             type="button"
-            onclick="window.history.go(-1)"
           >
             回列表
-          </button>
+          </a>
         </div>
       </form>
       @else

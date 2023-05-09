@@ -1,4 +1,8 @@
-<div class="addArticle" wire:ignore.self>
+<div class="addArticle" wire:ignore.self x-data="{
+  init(){
+    this.$dispatch('is-open-sidebar', {'name':'isArticle'})
+},
+}">
     <h1>新增文章分類</h1>
     <div class="card">
       <div class="card-title">
