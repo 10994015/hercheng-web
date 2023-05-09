@@ -1,31 +1,29 @@
-<div class="addArticle">
+<div class="addArticle" wire:ignore.self>
     <h1>{{$baseTitle}}</h1>
     <div class="card">
       <div class="card-title">
         <h2>Basic Information</h2>
       </div>
       @if(true)
-      <form  action="" @submit.prevent="onSubmit()">
+      <form  wire:submit.prevent='onSubmit'>
         <div class="form-group">
           <label for="">文章分類</label>
           <div class="container">
-            {{-- <select v-if="categoryLoading" disabled>
-            <option value="">Loading...</option>
-            </select> --}}
-            <select v-else v-model="article.category_id">
-              <option v-for="category in categories"   >category.name</option>
+            <select wire:model="category_id">
+              @foreach($categories as $category)
+              <option value="{{$category->id}}">{{$category->name}}</option>
+              @endforeach
             </select>
-            <a href="##">
+            <a href="{{route('cms.add-article-category')}}">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
             </a>
           </div>
-          
         </div>
         <div class="form-group">
           <label for="">文章標題</label>
-          <input type="text" v-model="article.title" />
+          <input type="text" wire:model="title" />
         </div>
         <div class="form-group">
           <label for="">文章內容</label>
@@ -39,13 +37,13 @@
               },
             }"
           ></ckeditor> --}}
-        <textarea id="editor" name="editor" v-model="article.content"></textarea>
+        <textarea name="content" wire:model="content"></textarea>
         </div>
         <div class="form-group">
           <label for="">文章圖片</label>
           <label for="imagefile" class="imagefileFor">
             <svg
-              v-if="previewLoading"
+              wire:loading wire:target="image"
               class="animate-spin h-5 w-5 text-gray-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -65,7 +63,8 @@
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               ></path>
             </svg>
-            <div v-if="!isPreview">
+            @if(!$image)
+            <div wire:loading.remove wire:target="image">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -82,23 +81,27 @@
               </svg>
               <span>將文件拖放到此處或單擊以上傳。</span>
             </div>
-            {{-- <div v-else class="isPreview">
-              <img src="" ref="previewImg" id="previewImg" />
-            </div> --}}
+            @else
+            <div class="isPreview">
+              <img src="{{$image->temporaryUrl()}}" id="previewImg" />
+            </div>
+            @endif
           </label>
-          <input type="file" id="imagefile" hidden @change="previewImage()" />
+          <input type="file" id="imagefile" wire:model="image" hidden />
         </div>
         <div class="chkbox-group">
           <div class="form-group">
             <label for="">隱藏文章</label>
-            <input type="checkbox" v-model="article.hidden" />
+            <input type="checkbox" wire:model="hidden" />
           </div>
         </div>
-        <span v-if="successMsg" class="successMsg">successMsg</span>
+        @if(session()->has('success'))
+        <span class="successMsg">{{session('success')}}</span>
+        @endif
         <div class="form-group btn-group mt-10">
           <button type="submit" >
             <svg
-              v-if="loading"
+              wire:loading wire:target='onSubmit'
               class="animate-spin h-5 w-5 text-white"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -118,11 +121,12 @@
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               ></path>
             </svg>
-            <span v-else>保存更改</span>
+            <span wire:loading.remove wire:target='onSubmit'>保存更改</span>
           </button>
           <button
             class="pre"
             type="button"
+            onclick="window.history.go(-1)"
           >
             回列表
           </button>

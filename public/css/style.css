@@ -732,6 +732,9 @@ header#header > .right > ul.list a:hover, header#header > .right > ul.list form:
   background-color: #fff;
   border: 2px #aaa dashed;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .addArticle > .card > form .form-group > .imagefileFor > div, .addArticle > .card .form .form-group > .imagefileFor > div {
   display: flex;

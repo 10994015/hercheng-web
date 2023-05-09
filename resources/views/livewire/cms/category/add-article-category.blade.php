@@ -41,6 +41,7 @@
           <button
             class="pre"
             type="button"
+            onclick="window.history.go(-1)"
           >
             回前頁
           </button>
