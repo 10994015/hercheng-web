@@ -41,8 +41,9 @@
         </div> 
         
     </div>
-    
 
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
     <script>
         window.onload = ()=>{
             document.getElementById('loading').style.display = "none"

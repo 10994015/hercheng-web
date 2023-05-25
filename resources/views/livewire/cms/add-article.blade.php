@@ -29,19 +29,9 @@
           <label for="">文章標題</label>
           <input type="text" wire:model="title" />
         </div>
-        <div class="form-group">
+        <div class="form-group" wire:ignore>
           <label for="">文章內容</label>
-          {{-- <ckeditor
-            :editor="editor"
-            id="editor"
-            v-model="article.content"
-            :config="{
-              ckfinder: {
-                uploadUrl: 'http://localhost:8000/api/upload-images'
-              },
-            }"
-          ></ckeditor> --}}
-        <textarea name="content" wire:model="content"></textarea>
+          <textarea name="editor" id="editor"></textarea>
         </div>
         <div class="form-group">
           <label for="">文章圖片</label>
@@ -170,3 +160,24 @@
       </div>
     </div>
   </div>
+
+  @push('scripts')
+  <script>
+
+    const content = document.getElementById('content')
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .then(editor=>{
+          if(@json($content) !== null){
+            editor.setData(@json($content))
+          }
+          editor.model.document.on('change:data', (e)=>{
+            window.Livewire.emit('ckeditorUpdated', {'content': editor.getData()});
+          })
+        })
+        .catch( error => {
+            console.error( error );
+        } 
+    );
+</script>
+@endpush

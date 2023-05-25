@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class AddArticle extends Component
 {
     use WithFileUploads;
-
+    protected $listeners = ['ckeditorUpdated'=>'ckeditorUpdated'];
     public $base_title;
     public $category_id;
     public $title;
@@ -41,7 +41,10 @@ class AddArticle extends Component
             $this->content = $article->content;
             $this->image_url = $article->image;
             $this->hidden = $article->hidden;
+            $this->dispatchBrowserEvent('initCkeditor', ['contnet'=>$this->content]);
         }
+
+
     }
     public function onSubmit(){
         if(!$this->article_id){
@@ -96,6 +99,9 @@ class AddArticle extends Component
         }
         
         
+    }
+    public function ckeditorUpdated($content){
+        $this->content = $content['content'];
     }
     public function render()
     {
