@@ -44,6 +44,7 @@
 
 
     <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-image@38.0.1/src/index.min.js"></script>
     <script>
         window.onload = ()=>{
             document.getElementById('loading').style.display = "none"

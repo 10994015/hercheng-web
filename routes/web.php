@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EditorController;
 use App\Http\Livewire\Cms\AddArticle;
 use App\Http\Livewire\Cms\Article;
 use App\Http\Livewire\Cms\Category\AddArticleCategory;
@@ -34,6 +35,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->prefix('web.cms')->group(function () {
+    Route::post('/upload', [EditorController::class, 'uploadimage'])->name('ckeditor.upload');
+
     Route::get('/', Dashboard::class)->name('cms.dashboard');
     Route::get('/articles', Article::class)->name('cms.article');
     Route::get('/add-article/{id}', AddArticle::class)->name('cms.add-article');

@@ -163,10 +163,15 @@
 
   @push('scripts')
   <script>
-
+import { Image, ImageResizeEditing, ImageResizeHandles } from 'https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-image@38.0.1/src/index.min.js';
     const content = document.getElementById('content')
     ClassicEditor
-        .create( document.querySelector( '#editor' ) )
+        .create( document.querySelector( '#editor' ),{
+          plugins: [ Image, ImageResizeEditing, ImageResizeHandles, /* ... */ ],
+          ckfinder:{
+            uploadUrl: '{{ route('ckeditor.upload').'?_token='.csrf_token()}}'
+          }
+        } )
         .then(editor=>{
           if(@json($content) !== null){
             editor.setData(@json($content))
